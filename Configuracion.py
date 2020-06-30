@@ -11,7 +11,7 @@ def ajustes(configuracion):
     for i in range(1,21):
         n.append(str(i))
         
-    diseño = [[sg.Text("Configuracion ScrabbleAr", size = (20, 1), font=("Times New Roman", 16))],
+    diseño = [[sg.Text("Configuracion ScrabbleAr", size = (20, 1), font = ("Times New Roman", 16))],
              [sg.Text('Dificultad:'), sg.DropDown(('Facil','Medio','Dificil'), default_value = ('medio'), size = (20,1))],
              [sg.Text('Tiempo:', size = (20, 1)), sg.InputCombo((n), size = (5,1), default_value = '10')],
              [sg.Button('Guardar', size = (13, 1), key = 'Guardo'), sg.Exit('Regresar', size = (13, 1), key = 'Regreso')]]
