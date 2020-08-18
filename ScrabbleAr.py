@@ -48,5 +48,6 @@ while True:
     elif evento == 'Configuracion':
         window.hide()
         configuracion = ajustes(configuracion)
+        window.UnHide()
     elif evento in (None, 'Salir'):
         break

@@ -19,9 +19,6 @@ def esconsecutivo(dicorden,n):#recibo la lista que fue ordenada consecutivamente
     "es consecutivo"
     return True
 
-
-    
-
 def tieneOrden(dic):
     coor=[]
     for c in dic.keys():
@@ -36,7 +33,6 @@ def tieneOrden(dic):
         if (esconsecutivo(ordenado2,0)):
             return ordenado2
     return []
-
 
 def esValida(palabra, *dif):
     palabra = parse(palabra).split('/')

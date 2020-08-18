@@ -2,6 +2,7 @@ import PySimpleGUI as sg
 from random import choice
 import auxiliar
 from validacion import validez
+import time
 '''
 CANTIDAD DE FICHAS POR LETRA:
 A ×11, E ×11,
@@ -72,6 +73,7 @@ def elegirLetras(CantRandom):#este modulo elige las letras dependiendo la cantid
         FICHASTOTALES[letraelegida]["CAN"] =FICHASTOTALES[letraelegida]["CAN"]-1 #aca se decrementa la cantidad de fichas de cada letra elegida
         letraselegidas.append(letraelegida)
     return letraselegidas
+    
 def Jugar(configuracion, evento):
  CantR=7 # cantidad de fichas a elegir se puede cambiar durante el programa dependiendo las restantes
  elegidasOponente=elegirLetras(CantR)
@@ -86,17 +88,17 @@ def Jugar(configuracion, evento):
 
  FENEMIGAS = [[sg.Button(image_filename='./imagenes/duda.png', image_size=(40,40), key=("FE"+str(m+n)),disabled=False, pad=(0,0)) for n in range(7)] for m in range(1)] #FE = FICHAS ENEMIGAS
  FJUGADOR = [[sg.Button(image_filename=FICHASTOTALES[elegidasJugador[n]]["imagen"], image_size=(60,60), key=("FJ"+str(m+n)), pad=(0,0)) for n in range(7)] for m in range(1)] #FJ = FICHAS JUGADOR
- tablero =  [[sg.Button(image_filename=aux.elegirimagen(i,j), image_size=(30,30), key=(i,j),disabled=True, pad=(0,0)) for j in range(MAX_COL)] for i in range(MAX_ROWS)]
+ tablero =  [[sg.Button(image_filename=aux.elegirimagen(i,j,dificultad = configuracion['Dificultad']), image_size=(30,30), key=(i,j),disabled=True, pad=(0,0)) for j in range(MAX_COL)] for i in range(MAX_ROWS)]
  #tablero=[[sg.Button(image_filename=asignarImagen(i,j), key=(i,j), image_size=(30,30), pad=(0,0)) for j in range(cantX)] for i in range(cantY)]
  
  
  colA = [[sg.Button('Guardar', size = (20, 1), key = 'Guardar')],
-            [sg.Button('Terminar', size = (20, 1), key = 'Salir')],
-            [sg.Frame(layout=[[sg.Text("Ponga una ficha en ST para comenzar la partida", size=(13, 10), key="-comment-", background_color="#190901")]], title="Comentarios", title_color="Yellow", background_color="Black", key="-block-")],
-            [sg.Frame(layout=[[sg.Text('00:00:00', size=(13, 1), font=('Helvetica', 10), justification='center', key='-timer-', background_color="#190901")]], title="Tiempo", title_color="Orange", background_color="Black")],
-            [sg.Text(text='Dificultad: ', size = (20, 1), key = 'Dificultad')],
-            [sg.Text(text='Tu puntaje: 0', size = (20, 1), key = 'PuntajeJugador')],
-            [sg.Text(text='Puntaje CPU: 0', size = (20, 1), key = 'PuntajeCPU')]]
+         [sg.Button('Terminar', size = (20, 1), key = 'Salir')],
+         [sg.Frame(layout=[[sg.Text("Ponga una ficha en ST para comenzar la partida", size=(13, 10), key="-comment-", background_color="#190901")]], title="Comentarios", title_color="Yellow", background_color="Black", key="-block-")],
+         [sg.Frame(layout=[[sg.Text('00:00:00', size=(13, 1), font=('Helvetica', 10), justification='center', key='-timer-', background_color="#190901")]], title="Tiempo", title_color="Orange", background_color="Black")],
+         [sg.Text(text='Dificultad: ', size = (20, 1), key = 'Dificultad')],
+         [sg.Text(text='Tu puntaje: 0', size = (20, 1), key = 'PuntajeJugador')],
+         [sg.Text(text='Puntaje CPU: 0', size = (20, 1), key = 'PuntajeCPU')]]
  
  colC = [[sg.Button("CONFIRMAR JUGADA",key="OK")],
          [sg.Button("CANCELAR JUGADA",key="NO")]]
